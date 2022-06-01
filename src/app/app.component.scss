@@ -1,0 +1,19 @@
+.labirint {
+    display: block;
+}
+.row {
+    display: flex;
+}
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 2px solid gray;
+}
+
+.wall {
+    background: lightgray;
+}
+
+.empty {
+    background: white;
+}
