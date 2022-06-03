@@ -1,0 +1,12 @@
+<div class="labirint">
+  <div class="labirint__row">
+    <div *ngFor="let item of dataTemplate.rows" class="row">
+      <div *ngFor="let cell of item" class="cell" [ngClass]="cell.state">
+      </div>
+    </div>
+  </div>
+  <div class="message">
+    <h3>Rooms:</h3>
+    <p>{{showMessages}}</p>
+  </div>
+</div>

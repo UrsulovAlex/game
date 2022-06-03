@@ -8,31 +8,22 @@ export interface IRoom {
     rows: [Cell[], Cell[], Cell[], Cell[]];
 }
 
-export class Cell {
-    state: RoomType;
+export class Cell implements ICell {
+    public state!: RoomType;
 
     constructor(state: RoomType){
-        this.state = state
+        this.state = state;
     }
 }
 
 export class Labirint {
-    rooms: IRoom;
+    private rooms: IRoom;
 
     constructor(rooms: IRoom) {
         this.rooms = rooms;
     }
 
-    generate(): IRoom {
+    public get generate(): IRoom {
         return this.rooms
     }
-}
-
-export const roomPresetOne: IRoom = {
-    rows: [
-        [new Cell('wall'), new Cell('empty'), new Cell('wall'), new Cell('wall')],
-        [new Cell('wall'), new Cell('empty'), new Cell('wall'), new Cell('wall')],
-        [new Cell('empty'), new Cell('empty'), new Cell('wall'), new Cell('wall')],
-        [new Cell('empty'), new Cell('wall'), new Cell('wall'), new Cell('wall')]
-    ]
 }

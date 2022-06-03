@@ -1,0 +1,32 @@
+.labirint {
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: 16px;
+}
+.row {
+    display: flex;
+}
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 2px solid gray;
+}
+
+.wall {
+    background: lightgray;
+}
+
+.empty {
+    background: white;
+}
+
+.message {
+    h3 {
+        margin-bottom: 4px;
+    }
+
+    p{
+        margin-top: 4px;
+        color: gray;
+    }
+}
