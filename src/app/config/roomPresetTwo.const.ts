@@ -1,4 +1,5 @@
-import { Cell, IRoom } from "../model/room_model";
+import { Cell } from "../model/room_model";
+import { IRoom } from "../model/interface";
 
 export const roomPresetTwo: IRoom = {
     rows: [

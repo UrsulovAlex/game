@@ -1,12 +1,4 @@
-type RoomType = 'wall' | 'empty' |'trap' | 'enemy';
-
-export interface ICell {
-    state: RoomType,
-}
-
-export interface IRoom {
-    rows: [Cell[], Cell[], Cell[], Cell[]];
-}
+import { ICell, IRoom, RoomType, IConfig } from "./interface";
 
 export class Cell implements ICell {
     public state!: RoomType;
@@ -16,14 +8,62 @@ export class Cell implements ICell {
     }
 }
 
-export class Labirint {
-    private rooms: IRoom;
+export class Room {
+    private roomsConfig!: IRoom;
+    private message: Logger;
 
-    constructor(rooms: IRoom) {
-        this.rooms = rooms;
+    constructor(rooms: IRoom, message: string ) {
+        this.roomsConfig = rooms;
+        this.message = new Logger(message);
     }
 
-    public get generate(): IRoom {
-        return this.rooms
+    generate(): IRoom {
+        return this.roomsConfig;
+    }
+
+    getMessage(): string {
+        return this.message.message;
+    }
+}
+
+export class PlayingField {
+    arrayRooms: Room[] = [];
+    arrayConfig: IConfig[] = [];
+    messageRoom!: string;
+    rooms!: IRoom;
+    message!: Logger;
+
+    constructor(roomConfig: IConfig[]) {
+        this.arrayConfig = roomConfig;
+    }
+
+    generateRooms(): void {
+        this.arrayRooms = this.arrayConfig.map(el => new Room(el.preset, el.messegeConfig));
+    }
+
+    get setActiveRooms(): IRoom {
+        let activElemnt: Room = this.arrayRooms[Math.floor(Math.random() * this.arrayRooms.length)];
+        this.getMessageRoom(activElemnt.getMessage());
+        return activElemnt.generate();
+    }
+
+    getMessageRoom(message: string): void {
+        this.messageRoom = message;
+    }
+
+    getMessage(): string {
+        return this.message.message;
+    }
+}
+
+export class Logger {
+    message: string;
+
+    constructor(message: string) {
+        this.message = message;
+    }
+
+    get generate(): string {
+        return this.message;
     }
 }

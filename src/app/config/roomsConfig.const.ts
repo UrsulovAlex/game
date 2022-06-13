@@ -1,30 +1,34 @@
-import { Labirint } from "../model/room_model";
+import { IConfig } from "../model/interface";
 import { roomPresetFour } from "./roomPresetFour.const";
 import { roomPresetOne } from "./roomPresetOne.const";
 import { roomPresetThree } from "./roomPresetThree.const";
 import { roomPresetTwo } from "./roomPresetTwo.const";
+import { roomPresetFive } from "./roomsPresetFive.const";
 
-export interface IConfig {
-    preset: Labirint;
-    messegeConfig: string;
+
+const configOne: IConfig = {
+    preset: roomPresetOne,
+    messegeConfig: 'generate the first room'
 }
 
-export const configOne: IConfig = {
-    preset: new Labirint(roomPresetOne),
-    messegeConfig: 'generate first Rooms'
+const configTwo: IConfig = {
+    preset: roomPresetTwo,
+    messegeConfig: 'generate the second room'
 }
 
-export const configTwo: IConfig = {
-    preset: new Labirint(roomPresetTwo),
-    messegeConfig: 'generate first Rooms'
+const configThree: IConfig = {
+    preset: roomPresetThree,
+    messegeConfig: 'generate the third room'
 }
 
-export const configThree: IConfig = {
-    preset: new Labirint(roomPresetThree),
-    messegeConfig: 'generate first Rooms'
+const configFour: IConfig = {
+    preset: roomPresetFour,
+    messegeConfig: 'generate the fourth room'
 }
 
-export const configFour: IConfig = {
-    preset: new Labirint(roomPresetFour),
-    messegeConfig: 'generate first Rooms'
+const configFive: IConfig = {
+    preset: roomPresetFive,
+    messegeConfig: 'generate the fifth room'
 }
+
+export const arrayConfig: IConfig[] = [configOne, configTwo, configThree, configFour, configFive];

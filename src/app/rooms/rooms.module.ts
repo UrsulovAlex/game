@@ -4,7 +4,6 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 
 
 
-
 @NgModule({
   declarations: [
     RoomsComponent
