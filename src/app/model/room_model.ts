@@ -1,4 +1,14 @@
 import { ICell, IRoom, RoomType, IConfig } from "./interface";
+import { arrayConfig } from 'src/app/config/roomsConfig.const';
+
+export class Logger {
+    message!: string;
+
+    get getMessage(): string {
+        return this.message;
+    }
+}
+
 
 export class Cell implements ICell {
     public state!: RoomType;
@@ -8,33 +18,33 @@ export class Cell implements ICell {
     }
 }
 
-export class Room {
+export class Room extends Logger{
     private roomsConfig!: IRoom;
-    private message: Logger;
 
     constructor(rooms: IRoom, message: string ) {
+        super();
         this.roomsConfig = rooms;
-        this.message = new Logger(message);
     }
 
     generate(): IRoom {
         return this.roomsConfig;
     }
 
-    getMessage(): string {
-        return this.message.message;
+    getMessageRoom(): string {
+        return super.getMessage;
     }
 }
 
-export class PlayingField {
+export class PlayingField extends Logger {
     arrayRooms: Room[] = [];
     arrayConfig: IConfig[] = [];
-    messageRoom!: string;
-    rooms!: IRoom;
-    message!: Logger;
+    messageRoom: string[] = [];    
 
-    constructor(roomConfig: IConfig[]) {
-        this.arrayConfig = roomConfig;
+    constructor(config: IConfig[]) {
+        super();
+        this.arrayConfig = config;
+        // this.arrayConfig = arrayConfig; //пытался присвоеть так при пустом конутрукторе
+        this.generateRooms();
     }
 
     generateRooms(): void {
@@ -43,27 +53,15 @@ export class PlayingField {
 
     get setActiveRooms(): IRoom {
         let activElemnt: Room = this.arrayRooms[Math.floor(Math.random() * this.arrayRooms.length)];
-        this.getMessageRoom(activElemnt.getMessage());
+        this.getMessageRoom(activElemnt.getMessageRoom());
         return activElemnt.generate();
     }
 
     getMessageRoom(message: string): void {
-        this.messageRoom = message;
+        this.messageRoom.push(message);
     }
 
-    getMessage(): string {
-        return this.message.message;
-    }
-}
-
-export class Logger {
-    message: string;
-
-    constructor(message: string) {
-        this.message = message;
-    }
-
-    get generate(): string {
-        return this.message;
+    getMessageLabirint(): string {
+        return super.getMessage;
     }
 }

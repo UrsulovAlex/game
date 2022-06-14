@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { arrayConfig } from 'src/app/config/roomsConfig.const';
 import { IRoom } from 'src/app/model/interface';
 import { PlayingField } from 'src/app/model/room_model';
+import { arrayConfig } from 'src/app/config/roomsConfig.const';
 
 @Component({
   selector: 'app-rooms',
@@ -11,7 +11,7 @@ import { PlayingField } from 'src/app/model/room_model';
 export class RoomsComponent implements OnInit {
 	dataTemplate!: IRoom;
   labirint!: PlayingField;
-  showMessages = '';
+  showMessages: string[] = [];
 
 	ngOnInit(): void {
 		this.generateRoom();
@@ -19,8 +19,11 @@ export class RoomsComponent implements OnInit {
 
   generateRoom(): void {
     this.labirint = new PlayingField(arrayConfig);
-    this.labirint.generateRooms();
-    this.dataTemplate = this.labirint.setActiveRooms;
+    // this.dataTemplate = this.labirint.setActiveRooms;
+  }
+
+  setActiveRoom(): void {
+    // this.dataTemplate = this.labirint.setActiveRooms;
     this.showMessages = this.labirint.messageRoom;
   }
 }
