@@ -1,4 +1,4 @@
-import { ICell, IRoom, RoomType, IConfig } from "./interface";
+import { IRoom, IConfig } from "./interface";
 import { arrayConfig } from 'src/app/config/roomsConfig.const';
 
 export class Logger {
@@ -7,14 +7,9 @@ export class Logger {
     get getMessage(): string {
         return this.message;
     }
-}
 
-
-export class Cell implements ICell {
-    public state!: RoomType;
-
-    constructor(state: RoomType){
-        this.state = state;
+    setMessage(text: string) {
+        this.message = text;
     }
 }
 
@@ -24,6 +19,7 @@ export class Room extends Logger{
     constructor(rooms: IRoom, message: string ) {
         super();
         this.roomsConfig = rooms;
+        super.setMessage(message)
     }
 
     generate(): IRoom {
@@ -38,12 +34,11 @@ export class Room extends Logger{
 export class PlayingField extends Logger {
     arrayRooms: Room[] = [];
     arrayConfig: IConfig[] = [];
-    messageRoom: string[] = [];    
+    messageRoom: string[] = []; 
 
-    constructor(config: IConfig[]) {
+    constructor() {
         super();
-        this.arrayConfig = config;
-        // this.arrayConfig = arrayConfig; //пытался присвоеть так при пустом конутрукторе
+        this.arrayConfig = arrayConfig
         this.generateRooms();
     }
 
@@ -58,7 +53,8 @@ export class PlayingField extends Logger {
     }
 
     getMessageRoom(message: string): void {
-        this.messageRoom.push(message);
+        const finishText = 'labirint finished';
+        this.messageRoom.length <= 4 ? this.messageRoom.push(message) : this.messageRoom.push(finishText);
     }
 
     getMessageLabirint(): string {

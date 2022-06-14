@@ -1,4 +1,4 @@
-import { Cell } from "../model/room_model";
+import { Cell } from "../model/cell_model";
 import { IRoom } from "../model/interface";
 
 export const roomPresetThree: IRoom = {
