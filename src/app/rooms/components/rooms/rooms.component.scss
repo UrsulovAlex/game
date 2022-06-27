@@ -2,6 +2,13 @@
     display: grid;
     grid-template-columns: max-content auto;
     gap: 16px;
+    position: relative;
+
+    &__row {
+        position: relative;
+        min-width: 616px;
+        min-height: 616px;
+    }
 }
 .row {
     display: flex;
@@ -38,4 +45,54 @@
         cursor: pointer;
         border-radius: 4px;
     }
+
+    &--loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__block {
+        position: relative;
+        min-width: 200px;
+        min-height: 200px;
+
+        .message--loading {
+            justify-content: flex-start;
+        }
+    }
+
+    &__botton {
+        display: flex;
+        gap: 16px;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+
+        tr {
+            border-bottom: 1px solid lightgray;
+        }
+
+        td {
+            padding: 4px 12px;
+        }
+
+
+        .td-title {
+            color: gray;
+            font-weight: bold;
+            padding: 8px 12px;
+        }
+    }
+
 }

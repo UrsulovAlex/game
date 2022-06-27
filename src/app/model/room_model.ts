@@ -3,7 +3,7 @@ import { arrayConfig } from 'src/app/config/roomsConfig.const';
 
 export class Logger {
     message!: string;
-
+    
     get getMessage(): string {
         return this.message;
     }

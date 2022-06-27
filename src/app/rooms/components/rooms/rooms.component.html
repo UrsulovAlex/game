@@ -1,13 +1,87 @@
 <div class="labirint">
   <div class="labirint__row">
-    <div *ngFor="let item of dataTemplate.rows" class="row">
-      <div *ngFor="let cell of item" class="cell" [ngClass]="cell.state">
+    <ng-container *ngIf="heroType !== undefined else generateMessage">
+      <ng-container *ngIf="!loader else generateMessage">
+        <div *ngFor="let item of dataTemplate?.rows" class="row">
+          <div *ngFor="let cell of item" class="cell" [ngClass]="cell.state">
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="message">
+    <div class="message__item">
+      <h3>Rooms:</h3>
+      <div class="message__block">
+        <ng-container *ngIf="!loader else generateMessage">
+          <p *ngFor="let item of showMessages">{{item}}</p>
+        </ng-container>
+      </div>
+      <button (click)="generate()">next room</button>
+    </div>
+    <div class="message__item">
+      <h3>Hero info:</h3>
+      <div class="message__block">
+        <ng-container *ngIf="heroType !== undefined">
+          <table>
+            <tr>
+              <td>Name:</td>
+              <td>{{hero?.name}}</td>
+            </tr>
+            <tr>
+              <td>Health:</td>
+              <td>{{hero?.health}}</td>
+            </tr>
+            <tr *ngIf="hero?.mana">
+              <td>Mana:</td>
+              <td>{{hero?.mana}}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="td-title">Available attacks</td>
+            </tr>
+            <tr>
+              <td>hit</td>
+              <td>{{hero?.hit}}</td>
+            </tr>
+            <tr *ngIf="hero?.archery_shot">
+              <td>Archery shot</td>
+              <td>{{hero?.archery_shot}}</td>
+            </tr>
+            <tr *ngIf="hero?.available_spells">
+              <td colspan="2" class="td-title">Available spells</td>
+            </tr>
+            <tr *ngIf="hero?.available_spells">
+              <td>Fire ball</td>
+              <td>hit {{hero?.available_spells?.fire_ball?.hit}}</td>
+              <td>mana {{hero?.available_spells?.fire_ball?.mana}}</td>
+            </tr>
+            <tr *ngIf="hero?.available_spells">
+              <td>Ice_arrow</td>
+              <td>hit {{hero?.available_spells?.ice_arrow?.hit}}</td>
+              <td>mana {{hero?.available_spells?.ice_arrow?.mana}}</td>
+              <td>recharge {{hero?.available_spells?.ice_arrow?.recharge}}</td>
+            </tr>
+            <tr *ngIf="hero?.lightning">
+              <td colspan="2" class="td-title">Lightning</td>
+            </tr>
+            <tr *ngIf="hero?.lightning">
+              <td>hit {{hero?.lightning?.hit}}</td>
+              <td>mana {{hero?.lightning?.mana}}</td>
+              <td>recharge {{hero?.lightning?.recharge}}</td>
+            </tr>
+          </table>
+        </ng-container>
+      </div>
+      <div class="message__botton">
+        <button (click)="initHero('warrior')">Warrior</button>
+        <button (click)="initHero('archer')">Archer</button>
+        <button (click)="initHero('mage')">Mage</button>
       </div>
     </div>
   </div>
-  <div class="message">
-    <h3>Rooms:</h3>
-    <p *ngFor="let item of showMessages">{{item}}</p>
-    <button (click)="setActiveRoom()">next room</button>
-  </div>
 </div>
+<ng-template #generateMessage>
+  <div class="message--loading">
+    generate Labirint
+  </div>
+</ng-template>
