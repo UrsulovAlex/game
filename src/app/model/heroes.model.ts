@@ -9,16 +9,16 @@ abstract class Hero {
 
 class Attack {
     public hit: number; 
-    public archery_shot: number | undefined;
+    public archeryShot: number | undefined;
 
     constructor(hit: number, archery_shot?: number) {
         this.hit = hit;
-        this.archery_shot = archery_shot;
+        this.archeryShot = archery_shot;
     }
 }
 
 class Magic extends Attack {
-    available_spells!: IAvailableSpells;
+    availableSpells!: IAvailableSpells;
     lightning!: IMagic;
 
     get Lightning(): IMagic {
@@ -30,11 +30,11 @@ class Magic extends Attack {
     }
 
     get AvailableSpells(): IAvailableSpells {
-        return this.available_spells;
+        return this.availableSpells;
     }
 
     set AvailableSpells(config: IAvailableSpells) {
-        this.available_spells = config;
+        this.availableSpells = config;
     }
 
     constructor(hit: number){
@@ -60,16 +60,16 @@ export class Archer extends Hero{
         this.name = 'Archer';
         this.health = 150;
         this.hit = this.typeOfAttack.hit;
-        this.archery_shot = this.typeOfAttack.archery_shot;
+        this.archery_shot = this.typeOfAttack.archeryShot;
     }
 }
 
 export class Mage extends Hero{
     mana = 100;
-    available_spells!:IAvailableSpells;
+    availableSpells!:IAvailableSpells;
     lightning!: IMagic;
     private magic = new Magic(5);
-    private set_Available_Apells = this.magic.AvailableSpells = {
+    private setAvailableApells = this.magic.AvailableSpells = {
         fire_ball: {
             hit: 20,
             mana: 20, 
@@ -79,7 +79,7 @@ export class Mage extends Hero{
             mana: 20,
             recharge: 1
         }};
-    private set_Lightning = this.magic.Lightning = {
+    private setLightning = this.magic.Lightning = {
         hit: 100,
         mana: 30,
         recharge: 2
@@ -89,8 +89,7 @@ export class Mage extends Hero{
         this.name = 'Mage';
         this.health = 150;
         this.hit = this.magic.hit;
-        this.available_spells = this.magic.AvailableSpells;
+        this.availableSpells = this.magic.AvailableSpells;
         this.lightning = this.magic.Lightning;
     }
-
 }

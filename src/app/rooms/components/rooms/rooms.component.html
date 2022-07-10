@@ -17,12 +17,13 @@
           <p *ngFor="let item of showMessages">{{item}}</p>
         </ng-container>
       </div>
-      <button (click)="generate()">next room</button>
+      <button [disabled]="this.showMessages.length == 0 || this.showMessages.length > 5"
+              (click)="generate()">next room</button>
     </div>
     <div class="message__item">
       <h3>Hero info:</h3>
       <div class="message__block">
-        <ng-container *ngIf="heroType !== undefined">
+        <ng-container *ngIf="heroType; else generateMessage">
           <table>
             <tr>
               <td>Name:</td>
@@ -56,7 +57,7 @@
               <td>mana {{hero?.available_spells?.fire_ball?.mana}}</td>
             </tr>
             <tr *ngIf="hero?.available_spells">
-              <td>Ice_arrow</td>
+              <td>Ice arrow</td>
               <td>hit {{hero?.available_spells?.ice_arrow?.hit}}</td>
               <td>mana {{hero?.available_spells?.ice_arrow?.mana}}</td>
               <td>recharge {{hero?.available_spells?.ice_arrow?.recharge}}</td>
@@ -81,7 +82,14 @@
   </div>
 </div>
 <ng-template #generateMessage>
+  <ng-container *ngIf="showMessages.length != 6; else finishedLabirint">
+    <div class="message--loading">
+      {{generateMessageLogger}}
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #finishedLabirint>
   <div class="message--loading">
-    generate Labirint
+    <p>finished labirint, choose new hero</p>
   </div>
 </ng-template>

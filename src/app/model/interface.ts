@@ -1,5 +1,6 @@
 export type RoomType = 'wall' | 'empty' |'trap' | 'enemy';
 export type HeroType = 'warrior' | 'archer' |'mage' ;
+export type messageType = 'hero' | 'room';
 
 export interface ICell {
     state: RoomType,
@@ -33,7 +34,7 @@ export interface IHero {
 }
 
 export interface IMage extends IHero{
-    mana: number;
-    available_spells:IAvailableSpells;
-    lightning: IMagic;
+    mana?: number;
+    available_spells?:IAvailableSpells;
+    lightning?: IMagic;
 }

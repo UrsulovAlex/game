@@ -62,8 +62,11 @@
 
     &__block {
         position: relative;
-        min-width: 200px;
-        min-height: 200px;
+        max-width: 320px;
+        min-height: 180px;
+        max-height: 180px;
+        overflow: auto;
+        margin: 8px 0 12px;
 
         .message--loading {
             justify-content: flex-start;
